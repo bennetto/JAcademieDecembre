@@ -5,29 +5,20 @@ public class Chanson {
 	private Integer numero;
 	private String titre;
 	private Integer duree;
-	public Integer getNumero() {
-		return numero;
-	}
-	public void setNumero(Integer numero) {
+
+	public Chanson(Integer numero, String titre, Integer duree) {
+		super();
 		this.numero = numero;
-	}
-	public String getTitre() {
-		return titre;
-	}
-	public void setTitre(String titre) {
 		this.titre = titre;
-	}
-	public Integer getDuree() {
-		return duree;
-	}
-	public void setDuree(Integer duree) {
 		this.duree = duree;
 	}
+	
 	@Override
 	public String toString() {
 		return "Chanson [numero=" + numero + ", titre=" + titre + ", duree="
 				+ duree + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -37,6 +28,7 @@ public class Chanson {
 		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,5 +56,32 @@ public class Chanson {
 		return true;
 	}
 	
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public Integer getDuree() {
+		return duree;
+	}
+
+	public void setDuree(Integer duree) {
+		this.duree = duree;
+	}
+
 	
+
+	
+
 }

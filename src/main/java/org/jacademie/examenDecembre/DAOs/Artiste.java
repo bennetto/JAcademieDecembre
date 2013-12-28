@@ -7,24 +7,16 @@ public class Artiste {
 	private Integer codeArtist;
 	private String nom;
 	private Set<Chanson> chansons;
-	public Integer getCodeArtist() {
-		return codeArtist;
-	}
-	public void setCodeArtist(Integer codeArtist) {
+	
+	public Artiste(Integer codeArtist, String nom, Set<Chanson> chansons) {
+		super();
 		this.codeArtist = codeArtist;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
 		this.nom = nom;
-	}
-	public Set<Chanson> getChansons() {
-		return chansons;
-	}
-	public void setChansons(Set<Chanson> chansons) {
 		this.chansons = chansons;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Artiste [codeArtist=" + codeArtist + ", nom=" + nom
@@ -66,6 +58,25 @@ public class Artiste {
 		} else if (!nom.equals(other.nom))
 			return false;
 		return true;
+	}
+	
+	public Integer getCodeArtist() {
+		return codeArtist;
+	}
+	public void setCodeArtist(Integer codeArtist) {
+		this.codeArtist = codeArtist;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public Set<Chanson> getChansons() {
+		return chansons;
+	}
+	public void setChansons(Set<Chanson> chansons) {
+		this.chansons = chansons;
 	}
 	
 	

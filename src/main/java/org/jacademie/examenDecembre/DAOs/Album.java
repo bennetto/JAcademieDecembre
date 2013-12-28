@@ -9,6 +9,13 @@ public class Album {
 	private Set<Album> chansons;
 	
 	
+	public Album(Integer codeAlbum, String nom, Set<Album> chansons) {
+		super();
+		this.codeAlbum = codeAlbum;
+		this.nom = nom;
+		this.chansons = chansons;
+	}
+
 	@Override
 	public String toString() {
 		return "Album [codeAlbum=" + codeAlbum + ", nom=" + nom + ", chansons="

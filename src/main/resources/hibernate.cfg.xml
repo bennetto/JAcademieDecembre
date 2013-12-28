@@ -24,11 +24,11 @@
        	
 						
 		<!-- Liste des fichiers de Mapping hbm -->
-		<!-- 
-		<mapping resource="org/jacademie/domain/Commande.hbm.xml"/>
-		<mapping resource="org/jacademie/domain/LigneCommande.hbm.xml"/>
-		<mapping resource="org/jacademie/domain/Client.hbm.xml"/>
-		-->
+		
+		<mapping resource="org/jacademie/examenDecembre/DAOs/Artiste.hbm.xml"/>
+		<mapping resource="org/jacademie/examenDecembre/DAOs/Album.hbm.xml"/>		
+		<mapping resource="org/jacademie/examenDecembre/DAOs/Chanson.hbm.xml"/>
+		
 		
 	</session-factory>
   </hibernate-configuration>

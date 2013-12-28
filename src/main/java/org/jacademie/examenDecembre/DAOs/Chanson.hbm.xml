@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.jacademie.examenDecembre">
+
+	<class name="Chanson" table="Chanson" >
+	
+	<composite-id>
+			<key-property name="numero" column="NUMERO" type="integer" />
+			<key-property name="idEnvironnement" column="ALBUM_ID"
+				type="integer" />
+		</composite-id>
+		
+		
+		<property name="titre" type="string">
+			<column name="TITRE" not-null="true" />
+		</property>
+		
+		<property name="duree" type="string">
+			<column name="DUREE" not-null="true" />
+		</property>
+
+	</class>
+</hibernate-mapping>	

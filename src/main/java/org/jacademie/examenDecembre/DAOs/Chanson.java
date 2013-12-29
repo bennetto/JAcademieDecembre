@@ -1,10 +1,31 @@
 package org.jacademie.examenDecembre.DAOs;
 
-public class Chanson {
+import java.io.Serializable;
 
+public class Chanson implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4784667312719445300L;
+	
 	private Integer numero;
 	private String titre;
 	private Integer duree;
+	private Album album;
+
+	public Chanson() {
+		super();
+
+	}
+
+	public Chanson(Integer numero, String titre, Integer duree, Album album) {
+		super();
+		this.numero = numero;
+		this.titre = titre;
+		this.duree = duree;
+		this.album = album;
+	}
 
 	public Chanson(Integer numero, String titre, Integer duree) {
 		super();
@@ -54,6 +75,14 @@ public class Chanson {
 		} else if (!titre.equals(other.titre))
 			return false;
 		return true;
+	}
+	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 	
 	public Integer getNumero() {

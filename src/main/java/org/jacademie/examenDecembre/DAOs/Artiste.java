@@ -4,13 +4,16 @@ import java.util.Set;
 
 public class Artiste {
 
-	private Integer codeArtist;
+	private Integer codeArtiste;
 	private String nom;
 	private Set<Chanson> chansons;
 	
+	public Artiste(){
+		super();
+	}
 	public Artiste(Integer codeArtist, String nom, Set<Chanson> chansons) {
 		super();
-		this.codeArtist = codeArtist;
+		this.codeArtiste = codeArtist;
 		this.nom = nom;
 		this.chansons = chansons;
 	}
@@ -19,7 +22,7 @@ public class Artiste {
 	
 	@Override
 	public String toString() {
-		return "Artiste [codeArtist=" + codeArtist + ", nom=" + nom
+		return "Artiste [codeArtist=" + codeArtiste + ", nom=" + nom
 				+ ", chansons=" + chansons + "]";
 	}
 	@Override
@@ -29,7 +32,7 @@ public class Artiste {
 		result = prime * result
 				+ ((chansons == null) ? 0 : chansons.hashCode());
 		result = prime * result
-				+ ((codeArtist == null) ? 0 : codeArtist.hashCode());
+				+ ((codeArtiste == null) ? 0 : codeArtiste.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
@@ -47,10 +50,10 @@ public class Artiste {
 				return false;
 		} else if (!chansons.equals(other.chansons))
 			return false;
-		if (codeArtist == null) {
-			if (other.codeArtist != null)
+		if (codeArtiste == null) {
+			if (other.codeArtiste != null)
 				return false;
-		} else if (!codeArtist.equals(other.codeArtist))
+		} else if (!codeArtiste.equals(other.codeArtiste))
 			return false;
 		if (nom == null) {
 			if (other.nom != null)
@@ -60,11 +63,11 @@ public class Artiste {
 		return true;
 	}
 	
-	public Integer getCodeArtist() {
-		return codeArtist;
+	public Integer getCodeArtiste() {
+		return codeArtiste;
 	}
-	public void setCodeArtist(Integer codeArtist) {
-		this.codeArtist = codeArtist;
+	public void setCodeArtiste(Integer codeArtiste) {
+		this.codeArtiste = codeArtiste;
 	}
 	public String getNom() {
 		return nom;

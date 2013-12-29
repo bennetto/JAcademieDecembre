@@ -8,6 +8,10 @@ public class Album {
 	private String nom;
 	private Set<Album> chansons;
 	
+	public Album()
+	{
+		super();
+	}
 	
 	public Album(Integer codeAlbum, String nom, Set<Album> chansons) {
 		super();

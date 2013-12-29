@@ -3,7 +3,7 @@
       "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
           "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="org.jacademie.examenDecembre">
+<hibernate-mapping package="org.jacademie.examenDecembre.DAOs">
 
 	<class name="Album" table="Album" >
 	
@@ -15,7 +15,7 @@
 			<column name="NOM" not-null="true" />
 		</property>
 		
-		<set name="chansons" lazy="false" cascade="all,delete-orphan">
+		<set name="chansons" lazy="false" cascade="all,delete-orphan" inverse="true">
 			<key column="ALBUM_ID" not-null="true" />
 			<one-to-many class="Chanson" />
 		</set>

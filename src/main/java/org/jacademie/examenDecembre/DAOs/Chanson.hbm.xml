@@ -3,16 +3,17 @@
       "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
           "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="org.jacademie.examenDecembre">
+<hibernate-mapping package="org.jacademie.examenDecembre.DAOs">
 
 	<class name="Chanson" table="Chanson" >
 	
 	<composite-id>
 			<key-property name="numero" column="NUMERO" type="integer" />
-			<key-property name="idEnvironnement" column="ALBUM_ID"
-				type="integer" />
+			<key-many-to-one name="album" class="Album"
+                              column="ALBUM_ID"
+                              lazy="false"></key-many-to-one>
+
 		</composite-id>
-		
 		
 		<property name="titre" type="string">
 			<column name="TITRE" not-null="true" />

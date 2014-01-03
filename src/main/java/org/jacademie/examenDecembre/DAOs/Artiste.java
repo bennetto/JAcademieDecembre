@@ -6,16 +6,16 @@ public class Artiste {
 
 	private Integer codeArtiste;
 	private String nom;
-	private Set<Chanson> chansons;
+	private Set<Album> albums;
 	
 	public Artiste(){
 		super();
 	}
-	public Artiste(Integer codeArtist, String nom, Set<Chanson> chansons) {
+	public Artiste(Integer codeArtist, String nom, Set<Album> albums) {
 		super();
 		this.codeArtiste = codeArtist;
 		this.nom = nom;
-		this.chansons = chansons;
+		this.albums = albums;
 	}
 	
 	
@@ -23,14 +23,14 @@ public class Artiste {
 	@Override
 	public String toString() {
 		return "Artiste [codeArtist=" + codeArtiste + ", nom=" + nom
-				+ ", chansons=" + chansons + "]";
+				+ ", albums=" + albums + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((chansons == null) ? 0 : chansons.hashCode());
+				+ ((albums == null) ? 0 : albums.hashCode());
 		result = prime * result
 				+ ((codeArtiste == null) ? 0 : codeArtiste.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
@@ -45,10 +45,10 @@ public class Artiste {
 		if (getClass() != obj.getClass())
 			return false;
 		Artiste other = (Artiste) obj;
-		if (chansons == null) {
-			if (other.chansons != null)
+		if (albums == null) {
+			if (other.albums != null)
 				return false;
-		} else if (!chansons.equals(other.chansons))
+		} else if (!albums.equals(other.albums))
 			return false;
 		if (codeArtiste == null) {
 			if (other.codeArtiste != null)
@@ -75,11 +75,11 @@ public class Artiste {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Set<Chanson> getChansons() {
-		return chansons;
+	public Set<Album> getAlbums() {
+		return albums;
 	}
-	public void setChansons(Set<Chanson> chansons) {
-		this.chansons = chansons;
+	public void setAlbums(Set<Album> chansons) {
+		this.albums = chansons;
 	}
 	
 	

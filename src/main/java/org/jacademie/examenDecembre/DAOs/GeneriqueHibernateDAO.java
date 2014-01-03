@@ -10,9 +10,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.jacademie.examenDecembre.utils.HibernateUtil;
-import org.jacademie.tdhibernate.Entreprise;
 
-abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneriqueDAO<T>, IHibernateDAO<T>{
+abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneriqueDAO<T>{
 
 	
 

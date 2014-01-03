@@ -34,12 +34,7 @@ public class HibernateUtil {
 	}
 	
 	public static void openSession(){
-		if( getSession()!=null ){
-			Throwable ex = new Throwable("Opening Hibernate Session one is but already open");
-			logger.warn("Opening session prevented. ", ex);
-		}else{
-	    	sessionFactory.openSession();
-		}
+		sessionFactory.openSession();
 	}
 	
 	public static Session getSession() {
@@ -55,6 +50,7 @@ public class HibernateUtil {
 	 
 	public static void commitTransaction() {
 		HibernateUtil.getSession().getTransaction().commit();
+		
 	}
 	 
 	public static void rollbackTransaction() {

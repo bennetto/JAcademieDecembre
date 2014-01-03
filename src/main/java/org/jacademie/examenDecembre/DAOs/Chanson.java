@@ -83,6 +83,8 @@ public class Chanson implements Serializable{
 
 	public void setAlbum(Album album) {
 		this.album = album;
+		if(!album.getChansons().contains(this))
+			album.addChanson(this);
 	}
 	
 	public Integer getNumero() {
@@ -108,9 +110,5 @@ public class Chanson implements Serializable{
 	public void setDuree(Integer duree) {
 		this.duree = duree;
 	}
-
-	
-
-	
 
 }

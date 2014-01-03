@@ -25,6 +25,7 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneri
 
 	@Override
 	abstract public java.util.List<T> searchByName(String searchPattern);
+	abstract public T getOneByName(String searchPattern);
 	
 	protected Session getSession(){
 		return HibernateUtil.getSession();
@@ -37,14 +38,21 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneri
     	return criteria.list();
 	}
 	
+	protected T searchOneByPattern(String table, String searchPattern){
+		Session hibernateSession = getSession();
+		Criteria criteria = hibernateSession.createCriteria(clazz);
+    	criteria.add(Restrictions.ilike(table, searchPattern));
+    	return (T) criteria.uniqueResult();
+	}
 	@Override
 	public T getById(Serializable id) {
 		Session hibernateSession = getSession();
 		T t = null;
 		try{
 			t = (T) hibernateSession.get(clazz, id);
+			return t;
 		}catch(RuntimeException ex){
-			logger.error("GenericHibernateDAO<"+clazz+">.getById unexpected cast error.");
+			logger.error("GenericHibernateDAO<"+clazz.getSimpleName()+">.getById unexpected error.",ex);
 		}finally{
 			return t;
 		}

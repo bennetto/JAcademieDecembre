@@ -11,7 +11,11 @@ public class AlbumHibernateDAO extends GeneriqueHibernateDAO<Album> implements I
 
 	@Override
 	public List<Album> searchByName(String searchPattern) {
-		searchByPattern("nom", searchPattern);
-		return null;
+		return searchByPattern("nom", searchPattern);
+	}
+
+	@Override
+	public Album getOneByName(String searchPattern) {
+		return searchOneByPattern("nom", searchPattern);
 	}
 }

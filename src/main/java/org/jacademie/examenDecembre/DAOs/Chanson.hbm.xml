@@ -19,7 +19,7 @@
 			<column name="TITRE" not-null="true" />
 		</property>
 		
-		<property name="duree" type="string">
+		<property name="duree" type="integer">
 			<column name="DUREE" not-null="true" />
 		</property>
 

@@ -6,6 +6,7 @@ import java.util.List;
 public interface IGeneriqueDAO<T> {
 	T getById(Serializable id);
 	List<T> searchByName(String searchPattern);
+	T getOneByName(String searchPattern);
 	List<T> getAll();
 	
 	void save(T entity);

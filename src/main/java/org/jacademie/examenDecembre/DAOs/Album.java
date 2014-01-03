@@ -1,23 +1,24 @@
 package org.jacademie.examenDecembre.DAOs;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Album {
 
 	private Integer codeAlbum;
 	private String nom;
-	private Set<Album> chansons;
+	private Set<Chanson> chansons;
 	
 	public Album()
 	{
 		super();
 	}
 	
-	public Album(Integer codeAlbum, String nom, Set<Album> chansons) {
+	public Album(Integer codeAlbum, String nom, Set<Chanson> chansons) {
 		super();
 		this.codeAlbum = codeAlbum;
 		this.nom = nom;
-		this.chansons = chansons;
+		this.chansons = (chansons != null)? chansons : new HashSet<Chanson>();
 	}
 
 	@Override
@@ -44,13 +45,15 @@ public class Album {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != obj.getClass() )
 			return false;
 		Album other = (Album) obj;
-		if (chansons == null) {
-			if (other.chansons != null)
+		
+		if (chansons == null || chansons.size() == 0) {
+			if (other.chansons != null  && other.chansons.size() != 0)
 				return false;
-		} else if (!chansons.equals(other.chansons))
+		}
+		else if (!chansons.equals(other.chansons))
 			return false;
 		if (codeAlbum == null) {
 			if (other.codeAlbum != null)
@@ -77,11 +80,17 @@ public class Album {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Set<Album> getChansons() {
+	public Set<Chanson> getChansons() {
 		return chansons;
 	}
-	public void setChansons(Set<Album> chansons) {
+	public void setChansons(Set<Chanson> chansons) {
 		this.chansons = chansons;
+	}
+	
+	public void addChanson(Chanson chanson){
+		chansons.add(chanson);
+		if(chanson.getAlbum()!=this)
+			chanson.setAlbum(this);
 	}
 	
 }

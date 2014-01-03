@@ -11,8 +11,12 @@ public class ArtisteHibernateDAO extends GeneriqueHibernateDAO<Artiste> implemen
 
 	@Override
 	public List<Artiste> searchByName(String searchPattern) {
-		searchByPattern("nom", searchPattern);
-		return null;
+		return searchByPattern("nom", searchPattern);
+	}
+
+	@Override
+	public Artiste getOneByName(String searchPattern) {
+		return searchOneByPattern("nom", searchPattern);
 	}
 
 

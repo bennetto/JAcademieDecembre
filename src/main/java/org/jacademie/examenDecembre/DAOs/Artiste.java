@@ -1,5 +1,8 @@
 package org.jacademie.examenDecembre.DAOs;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Artiste {
@@ -10,12 +13,13 @@ public class Artiste {
 	
 	public Artiste(){
 		super();
+		albums = new HashSet<Album>();
 	}
 	public Artiste(Integer codeArtist, String nom, Set<Album> albums) {
 		super();
 		this.codeArtiste = codeArtist;
 		this.nom = nom;
-		this.albums = albums;
+		this.albums = (albums!=null) ? albums : new HashSet<Album>();
 	}
 	
 	
@@ -36,6 +40,7 @@ public class Artiste {
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -45,11 +50,14 @@ public class Artiste {
 		if (getClass() != obj.getClass())
 			return false;
 		Artiste other = (Artiste) obj;
-		if (albums == null) {
-			if (other.albums != null)
+
+		if (albums == null  || albums.size() == 0) {
+			if (other.albums != null && other.albums.size() != 0)
 				return false;
-		} else if (!albums.equals(other.albums))
+		} else 
+		if (!albums.equals(other.albums))
 			return false;
+		
 		if (codeArtiste == null) {
 			if (other.codeArtiste != null)
 				return false;
@@ -82,5 +90,8 @@ public class Artiste {
 		this.albums = chansons;
 	}
 	
+	public void addAlbum(Album album){
+		albums.add(album);
+	}
 	
 }

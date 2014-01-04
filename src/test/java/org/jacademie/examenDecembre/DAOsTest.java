@@ -2,7 +2,8 @@ package org.jacademie.examenDecembre;
 
 import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.jacademie.examenDecembre.DAOs.Album;
 import org.jacademie.examenDecembre.DAOs.AlbumHibernateDAO;
@@ -13,7 +14,6 @@ import org.jacademie.examenDecembre.DAOs.IAlbumDAO;
 import org.jacademie.examenDecembre.DAOs.IArtisteDAO;
 import org.jacademie.examenDecembre.utils.HibernateUtil;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -96,10 +96,9 @@ public class DAOsTest {
 	@Test
 	public void persistChansonByArtistWay(){
 		Artiste artiste = art2;
-		Artiste artisteRetrieved;
+		//Artiste artisteRetrieved;
 		Album album = alb2_0;
-		Album albumRetrived;
-		Album albumRetrivedUpdated;
+		//Album albumRetrived;
 		
 		beginTransaction();
 		artisteDAO.save(artiste);

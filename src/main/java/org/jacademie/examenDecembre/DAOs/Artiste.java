@@ -1,8 +1,6 @@
 package org.jacademie.examenDecembre.DAOs;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class Artiste {
@@ -22,8 +20,36 @@ public class Artiste {
 		this.albums = (albums!=null) ? albums : new HashSet<Album>();
 	}
 	
+	public Integer getCodeArtiste() {
+		return codeArtiste;
+	}
+	
+	public void setCodeArtiste(Integer codeArtiste) {
+		this.codeArtiste = codeArtiste;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public Set<Album> getAlbums() {
+		return albums;
+	}
+	
+	public void setAlbums(Set<Album> chansons) {
+		this.albums = chansons;
+	}
+	
+	public void addAlbum(Album album){
+		albums.add(album);
+	}
 	
 	
+
 	@Override
 	public String toString() {
 		return "Artiste [codeArtist=" + codeArtiste + ", nom=" + nom
@@ -69,29 +95,6 @@ public class Artiste {
 		} else if (!nom.equals(other.nom))
 			return false;
 		return true;
-	}
-	
-	public Integer getCodeArtiste() {
-		return codeArtiste;
-	}
-	public void setCodeArtiste(Integer codeArtiste) {
-		this.codeArtiste = codeArtiste;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public Set<Album> getAlbums() {
-		return albums;
-	}
-	public void setAlbums(Set<Album> chansons) {
-		this.albums = chansons;
-	}
-	
-	public void addAlbum(Album album){
-		albums.add(album);
 	}
 	
 }

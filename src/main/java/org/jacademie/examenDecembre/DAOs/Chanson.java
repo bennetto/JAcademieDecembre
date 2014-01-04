@@ -34,6 +34,40 @@ public class Chanson implements Serializable{
 		this.duree = duree;
 	}
 	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+		if(!album.getChansons().contains(this))
+			album.addChanson(this);
+	}
+	
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public Integer getDuree() {
+		return duree;
+	}
+
+	public void setDuree(Integer duree) {
+		this.duree = duree;
+	}
+
 	@Override
 	public String toString() {
 		return "Chanson [numero=" + numero + ", titre=" + titre + ", duree="
@@ -76,39 +110,4 @@ public class Chanson implements Serializable{
 			return false;
 		return true;
 	}
-	
-	public Album getAlbum() {
-		return album;
-	}
-
-	public void setAlbum(Album album) {
-		this.album = album;
-		if(!album.getChansons().contains(this))
-			album.addChanson(this);
-	}
-	
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public String getTitre() {
-		return titre;
-	}
-
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
-
-	public Integer getDuree() {
-		return duree;
-	}
-
-	public void setDuree(Integer duree) {
-		this.duree = duree;
-	}
-
 }

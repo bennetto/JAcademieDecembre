@@ -1,6 +1,5 @@
 package org.jacademie.examenDecembre.DAOs;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class ArtisteHibernateDAO extends GeneriqueHibernateDAO<Artiste> implements IArtisteDAO {

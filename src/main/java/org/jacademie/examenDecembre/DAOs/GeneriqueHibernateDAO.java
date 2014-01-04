@@ -2,7 +2,6 @@ package org.jacademie.examenDecembre.DAOs;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -13,9 +12,6 @@ import org.jacademie.examenDecembre.utils.HibernateUtil;
 
 abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneriqueDAO<T>{
 
-	
-
-	
 	protected Class<T> clazz;
 	protected Logger logger = Logger.getLogger(GeneriqueHibernateDAO.class);
 	
@@ -44,6 +40,7 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneri
     	criteria.add(Restrictions.ilike(table, searchPattern));
     	return (T) criteria.uniqueResult();
 	}
+	
 	@Override
 	public T getById(Serializable id) {
 		Session hibernateSession = getSession();
@@ -53,9 +50,9 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneri
 			return t;
 		}catch(RuntimeException ex){
 			logger.error("GenericHibernateDAO<"+clazz.getSimpleName()+">.getById unexpected error.",ex);
-		}finally{
-			return t;
+			throw ex;
 		}
+		
 	}
 
 

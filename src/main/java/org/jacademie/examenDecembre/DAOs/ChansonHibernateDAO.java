@@ -1,10 +1,6 @@
 package org.jacademie.examenDecembre.DAOs;
 
-import java.io.Serializable;
 import java.util.List;
-
-import org.hibernate.Session;
-import org.jacademie.examenDecembre.utils.HibernateUtil;
 
 public class ChansonHibernateDAO extends GeneriqueHibernateDAO<Chanson> implements
 		IChansonDAO {

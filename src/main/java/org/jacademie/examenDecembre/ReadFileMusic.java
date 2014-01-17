@@ -1,14 +1,19 @@
 package org.jacademie.examenDecembre;
 
 import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
+import static org.jacademie.examenDecembre.utils.HibernateUtil.closeSession;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
+import static org.jacademie.examenDecembre.utils.HibernateUtil.openSession;
+import static org.jacademie.examenDecembre.utils.HibernateUtil.rollbackTransaction;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.NonUniqueObjectException;
 import org.jacademie.examenDecembre.DAOs.Album;
 import org.jacademie.examenDecembre.DAOs.AlbumHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.Artiste;
@@ -18,6 +23,7 @@ import org.jacademie.examenDecembre.DAOs.ChansonHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.IAlbumDAO;
 import org.jacademie.examenDecembre.DAOs.IArtisteDAO;
 import org.jacademie.examenDecembre.DAOs.IChansonDAO;
+import org.jacademie.examenDecembre.utils.HibernateUtil;
 
 import au.com.bytecode.opencsv.CSVReader;
 
@@ -35,10 +41,14 @@ public class ReadFileMusic {
 			csvReader = new CSVReader(new FileReader(pathFileMusic));
 
 			String[] rowAsTokens;
-			String out = "";
+			
+			openSession();
+			beginTransaction();
 			while ((rowAsTokens = csvReader.readNext()) != null) {
 
 				if (rowAsTokens.length != 7) {
+					rollbackTransaction();
+					closeSession();
 					return false;
 				}
 
@@ -50,7 +60,7 @@ public class ReadFileMusic {
 				String titreChanson = rowAsTokens[5];
 				Integer dureeChanson = Integer.parseInt(rowAsTokens[6]);
 
-				beginTransaction();
+				
 				Artiste artist = artisteDAO.getById(codeArtist);
 
 				if (artist == null) {
@@ -60,6 +70,7 @@ public class ReadFileMusic {
 					artist = new Artiste(codeArtist, nomArtiste, null);
 					artist.addAlbum(album);
 					artisteDAO.save(artist);
+					
 				} else {
 					Album album = albumDAO.getById(codeAlbum);
 					if (album == null) {
@@ -68,43 +79,55 @@ public class ReadFileMusic {
 						album.addChanson(chanson);
 						artist.addAlbum(album);
 						artisteDAO.update(artist);
+						
 					} else {
 						Chanson chanson = chansonDAO.getByAlbumAndNum(album,numeroChanson);
 						if (chanson == null) {
 							chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
 							album.addChanson(chanson);
 							albumDAO.update(album);
+						
+							
 						} else {
 							chanson.setTitre(titreChanson);
 							chanson.setDuree(dureeChanson);
 							chansonDAO.update(chanson);
+							
 						}
 					}
 				}
-				commitTransaction();
-
-				logger.info(rowAsTokens[0]);
-				for (String token : rowAsTokens) {
-					out += token + " ";
-				}
-				logger.info(out);
-				out = "";
 			}
-
-			return true;
+			
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			rollbackTransaction();
+			closeSession();
 			return false;
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			rollbackTransaction();
+			closeSession();
+			return false;
+		}catch(NonUniqueObjectException e){
+			e.printStackTrace();
+			rollbackTransaction();
+			closeSession();
+			return false;
+		}catch(HibernateException e){
+			e.printStackTrace();
+			rollbackTransaction();
+			closeSession();
 			return false;
 		}
-
+		
+		commitTransaction();
+		closeSession();
+		return true;
 	}
-
 	private static boolean extractData() {
 		return false;
 	}

@@ -49,7 +49,7 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneri
 			t = (T) hibernateSession.get(clazz, id);
 			return t;
 		}catch(RuntimeException ex){
-			logger.error("GenericHibernateDAO<"+clazz.getSimpleName()+">.getById unexpected error.");//,ex
+			logger.error("GenericHibernateDAO<"+clazz.getSimpleName()+">.getById unexpected error.", ex );//,ex
 			throw ex;
 		}
 		

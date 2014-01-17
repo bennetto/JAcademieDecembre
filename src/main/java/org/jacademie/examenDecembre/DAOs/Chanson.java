@@ -2,8 +2,13 @@ package org.jacademie.examenDecembre.DAOs;
 
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 public class Chanson implements Serializable{
 
+	
+	private static final Logger logger = Logger.getLogger(Chanson.class);
+	
 	/**
 	 * 
 	 */
@@ -34,11 +39,18 @@ public class Chanson implements Serializable{
 		this.duree = duree;
 	}
 	
+	public Chanson(Integer numero, Album album) {
+		super();
+		this.numero = numero;
+		this.album = album;
+	}
+
 	public Album getAlbum() {
 		return album;
 	}
 
 	public void setAlbum(Album album) {
+		logger.debug(album);
 		this.album = album;
 		if(!album.getChansons().contains(this))
 			album.addChanson(this);

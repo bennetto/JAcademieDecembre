@@ -22,4 +22,9 @@
 		</property>
 
 	</class>
+	<query name="getChansonByID">
+		SELECT ch FROM Chanson as ch
+		LEFT JOIN ch.album as alb
+		WHERE alb.codeAlbum=:album_code AND ch.numero=:chanson_numero
+	</query>
 </hibernate-mapping>	

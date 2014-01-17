@@ -2,6 +2,9 @@ package org.jacademie.examenDecembre.DAOs;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 public class ChansonHibernateDAO extends GeneriqueHibernateDAO<Chanson> implements
 		IChansonDAO {
 
@@ -22,10 +25,15 @@ public class ChansonHibernateDAO extends GeneriqueHibernateDAO<Chanson> implemen
 
 	@Override
 	public Chanson getByAlbumAndNum(Album album, Integer numero) {
-		Chanson tempChanson = new Chanson();
-		tempChanson.setAlbum(album);
-		tempChanson.setNumero(numero);
-		return getById(tempChanson);
+		Session hibernateSession = getSession();
+    	Query hqlQuery = hibernateSession.getNamedQuery("getChansonByID");
+    	hqlQuery.setInteger("chanson_numero", numero);
+    	hqlQuery.setInteger("album_code", album.getCodeAlbum());
+    	List<Chanson> chansons = hqlQuery.list();
+    	if(chansons.size() == 1){
+    		return chansons.get(0);
+    	}
+    	return null;
 		
 	}
 

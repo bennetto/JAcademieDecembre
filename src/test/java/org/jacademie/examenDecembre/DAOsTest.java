@@ -4,13 +4,16 @@ import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
 import static org.junit.Assert.*;
 
+import org.apache.log4j.Logger;
 import org.jacademie.examenDecembre.DAOs.Album;
 import org.jacademie.examenDecembre.DAOs.AlbumHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.Artiste;
 import org.jacademie.examenDecembre.DAOs.ArtisteHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.Chanson;
+import org.jacademie.examenDecembre.DAOs.ChansonHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.IAlbumDAO;
 import org.jacademie.examenDecembre.DAOs.IArtisteDAO;
+import org.jacademie.examenDecembre.DAOs.IChansonDAO;
 import org.jacademie.examenDecembre.utils.HibernateUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -18,7 +21,9 @@ import org.junit.Test;
 
 public class DAOsTest  {
 	
-
+	
+	private static final Logger logger = Logger.getLogger(DAOsTest.class);
+	
 	static private Artiste art0 = new Artiste(1000, "Abe", null);
 	static private Artiste art1 = new Artiste(1001, "Bob", null);
 	static private Artiste art2 = new Artiste(1002, "Carol", null);
@@ -30,6 +35,7 @@ public class DAOsTest  {
 	
 	static IArtisteDAO artisteDAO = new ArtisteHibernateDAO();
 	static IAlbumDAO albumDAO = new AlbumHibernateDAO();
+	static IChansonDAO chansonDAO = new ChansonHibernateDAO();
 	
 	@BeforeClass
 	public static void initDB(){
@@ -95,9 +101,8 @@ public class DAOsTest  {
 	@Test
 	public void persistChansonByArtistWay(){
 		Artiste artiste = art2;
-		//Artiste artisteRetrieved;
 		Album album = alb2_0;
-		//Album albumRetrived;
+		Chanson chansonRetrieved;
 		
 		beginTransaction();
 		artisteDAO.save(artiste);
@@ -107,7 +112,13 @@ public class DAOsTest  {
 		album.addChanson(chanson2);
 		album.addChanson(chanson3);
 		commitTransaction();
-		//TODO: Add correct test
+
+		beginTransaction();
+		chansonRetrieved = chansonDAO.getByAlbumAndNum(chanson1.getAlbum(), chanson1.getNumero());
+		logger.info("---"+chanson1 +" vs. "+ chansonRetrieved);
+		assertEquals("Cannot retrieve chanson", chansonRetrieved, chanson1);
+		commitTransaction();
+		
 	}
 	
 

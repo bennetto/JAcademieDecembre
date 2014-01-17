@@ -65,6 +65,7 @@ public class ReadFileMusic {
 
 				if (artist == null) {
 					Chanson chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
+					logger.debug("a + " + chanson);
 					Album album = new Album(codeAlbum, nomAlbum, null);
 					album.addChanson(chanson);
 					artist = new Artiste(codeArtist, nomArtiste, null);
@@ -75,28 +76,32 @@ public class ReadFileMusic {
 					Album album = albumDAO.getById(codeAlbum);
 					if (album == null) {
 						Chanson chanson = new Chanson(numeroChanson,titreChanson, dureeChanson);
+						logger.debug("b + " + chanson);
 						album = new Album(codeAlbum, nomAlbum, null);
 						album.addChanson(chanson);
 						artist.addAlbum(album);
-						artisteDAO.update(artist);
 						
 					} else {
 						Chanson chanson = chansonDAO.getByAlbumAndNum(album,numeroChanson);
+						logger.debug("c + " + chanson);
 						if (chanson == null) {
 							chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
+							logger.debug("c2 + " + chanson);
 							album.addChanson(chanson);
-							albumDAO.update(album);
+							//albumDAO.update(album);
 						
 							
 						} else {
 							chanson.setTitre(titreChanson);
 							chanson.setDuree(dureeChanson);
-							chansonDAO.update(chanson);
+							//chansonDAO.update(chanson);
 							
 						}
 					}
+					artisteDAO.update(artist);
 				}
 			}
+
 			
 			
 		} catch (FileNotFoundException e) {
@@ -123,7 +128,7 @@ public class ReadFileMusic {
 			closeSession();
 			return false;
 		}
-		
+
 		commitTransaction();
 		closeSession();
 		return true;

@@ -1,10 +1,15 @@
 package org.jacademie.examenDecembre.DAOs;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Artiste {
+public class Artiste  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9121667835705743460L;
 	private Integer codeArtiste;
 	private String nom;
 	private Set<Album> albums;

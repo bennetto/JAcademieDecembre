@@ -2,8 +2,7 @@ package org.jacademie.examenDecembre;
 
 import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.jacademie.examenDecembre.DAOs.Album;
 import org.jacademie.examenDecembre.DAOs.AlbumHibernateDAO;
@@ -17,7 +16,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class DAOsTest {
+public class DAOsTest  {
 	
 
 	static private Artiste art0 = new Artiste(1000, "Abe", null);

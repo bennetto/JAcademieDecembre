@@ -3,7 +3,7 @@ package org.jacademie.examenDecembre.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public interface IGeneriqueDAO<T> {
+public interface GeneriqueDAO<T> {
 	T getById(Serializable id);
 	List<T> searchByName(String searchPattern);
 	T getOneByName(String searchPattern);

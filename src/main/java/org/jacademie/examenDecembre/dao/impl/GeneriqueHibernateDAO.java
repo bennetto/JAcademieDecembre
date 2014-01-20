@@ -8,10 +8,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.jacademie.examenDecembre.dao.IGeneriqueDAO;
+import org.jacademie.examenDecembre.dao.GeneriqueDAO;
 import org.jacademie.examenDecembre.utils.HibernateUtil;
 
-abstract public class GeneriqueHibernateDAO<T extends Object> implements IGeneriqueDAO<T>{
+abstract public class GeneriqueHibernateDAO<T extends Object> implements GeneriqueDAO<T>{
 
 	protected Class<T> clazz;
 	protected Logger logger = Logger.getLogger(GeneriqueHibernateDAO.class);

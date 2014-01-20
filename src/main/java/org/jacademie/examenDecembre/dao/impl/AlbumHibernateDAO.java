@@ -5,9 +5,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jacademie.examenDecembre.bo.Album;
-import org.jacademie.examenDecembre.dao.IAlbumDAO;
+import org.jacademie.examenDecembre.dao.AlbumDAO;
 
-public class AlbumHibernateDAO extends GeneriqueHibernateDAO<Album> implements IAlbumDAO {
+public class AlbumHibernateDAO extends GeneriqueHibernateDAO<Album> implements AlbumDAO {
 
 	public AlbumHibernateDAO() {
 		super(Album.class);

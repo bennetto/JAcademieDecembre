@@ -3,9 +3,9 @@ package org.jacademie.examenDecembre.dao.impl;
 import java.util.List;
 
 import org.jacademie.examenDecembre.bo.Artiste;
-import org.jacademie.examenDecembre.dao.IArtisteDAO;
+import org.jacademie.examenDecembre.dao.ArtisteDAO;
 
-public class ArtisteHibernateDAO extends GeneriqueHibernateDAO<Artiste> implements IArtisteDAO {
+public class ArtisteHibernateDAO extends GeneriqueHibernateDAO<Artiste> implements ArtisteDAO {
 
 	public ArtisteHibernateDAO() {
 		super(Artiste.class);

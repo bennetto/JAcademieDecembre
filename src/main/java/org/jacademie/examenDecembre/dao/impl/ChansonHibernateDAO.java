@@ -6,10 +6,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jacademie.examenDecembre.bo.Album;
 import org.jacademie.examenDecembre.bo.Chanson;
-import org.jacademie.examenDecembre.dao.IChansonDAO;
+import org.jacademie.examenDecembre.dao.ChansonDAO;
 
 public class ChansonHibernateDAO extends GeneriqueHibernateDAO<Chanson> implements
-		IChansonDAO {
+		ChansonDAO {
 
 	public ChansonHibernateDAO() {
 		super(Chanson.class);

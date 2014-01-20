@@ -24,6 +24,9 @@ public class Artiste  implements Serializable{
 		this.nom = nom;
 		this.albums = (albums!=null) ? albums : new HashSet<Album>();
 	}
+	public Artiste(Integer codeArtist, String nom) {
+		this(codeArtist,nom,null);
+	}
 	
 	public Integer getCodeArtiste() {
 		return codeArtiste;

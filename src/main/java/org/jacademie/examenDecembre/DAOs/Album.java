@@ -25,6 +25,10 @@ public class Album  implements Serializable{
 		this.nom = nom;
 		this.chansons = (chansons != null)? chansons : new HashSet<Chanson>();
 	}
+	
+	public Album(Integer codeAlbum, String nom) {
+		this(codeAlbum, nom, null);
+	}
 
 	public Integer getCodeAlbum() {
 		return codeAlbum;

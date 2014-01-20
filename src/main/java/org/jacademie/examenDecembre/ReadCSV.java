@@ -38,16 +38,7 @@ public class ReadCSV {
 			
 				}
 			}
-			
-			
-			
-			
-			
-			
-		
-			
-			
-		
+	
 		  } catch (IOException ex) {
 	    		ex.printStackTrace();
 	        }

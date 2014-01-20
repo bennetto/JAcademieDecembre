@@ -59,51 +59,44 @@ public class ReadFileMusic {
 				String titreChanson = rowAsTokens[5];
 				Integer dureeChanson = Integer.parseInt(rowAsTokens[6]);
 
+				
 				Artiste artist = artisteDAO.getById(codeArtist);
-				logger.debug(artist);
 				if (artist == null) {
-					Chanson chanson = new Chanson(numeroChanson, titreChanson,
-							dureeChanson);
-					logger.debug("a + " + chanson);
-					Album album = new Album(codeAlbum, nomAlbum, null);
-					album.addChanson(chanson);
-					artist = new Artiste(codeArtist, nomArtiste, null);
-					artist.addAlbum(album);
-					artisteDAO.save(artist);
-
-				} else {
-					Album album = albumDAO.getById(codeAlbum);
-					logger.info(album);
-					if (album == null) {
-						Chanson chanson = new Chanson(numeroChanson,
-								titreChanson, dureeChanson);
-						logger.debug("b + " + chanson);
-						album = new Album(codeAlbum, nomAlbum, null);
-						album.addChanson(chanson);
-						artist.addAlbum(album);
-
-					} else {
-						Chanson chanson = chansonDAO.getByAlbumAndNum(album,
-								numeroChanson);
-						logger.debug(chanson);
-						logger.debug("c + " + chanson);
-						if (chanson == null) {
-							chanson = new Chanson(numeroChanson, titreChanson,
-									dureeChanson);
-							logger.debug("c2 + " + chanson);
-							album.addChanson(chanson);
-							// albumDAO.update(album);
-
-						} else {
-							chanson.setTitre(titreChanson);
-							chanson.setDuree(dureeChanson);
-							// chansonDAO.update(chanson);
-
-						}
-					}
-					artisteDAO.update(artist);
-					flush();
+					artist = new Artiste(codeArtist, nomArtiste);
 				}
+				else
+				{
+					artist.setNom(nomArtiste);
+				}
+				
+				
+				
+				Album album = albumDAO.getById(codeAlbum);
+				if (album == null) {
+					album = new Album(codeAlbum,nomAlbum);
+					artist.addAlbum(album);
+				}
+				else
+				{
+					album.setNom(nomAlbum);
+				}
+					
+					
+				
+				Chanson chanson = chansonDAO.getByAlbumAndNum(album,numeroChanson);
+				if (chanson == null) {
+					chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
+					album.addChanson(chanson);
+				}
+				else
+				{
+					chanson.setTitre(titreChanson);
+					chanson.setDuree(dureeChanson);
+				}
+				
+					artisteDAO.save(artist);
+					flush();
+				
 			}
 
 		} catch (FileNotFoundException e) {

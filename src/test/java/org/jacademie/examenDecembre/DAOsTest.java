@@ -62,7 +62,10 @@ public class DAOsTest  {
 		beginTransaction();
 		artisteRetrieved = artisteDAO.getOneByName(artiste.getNom());
 		commitTransaction();
+		logger.info(artiste);
+		logger.info(artisteRetrieved);
 		assertEquals(artiste, artisteRetrieved);
+	
 	}
 	@Test
 	public void persistAlbumByArtistWay(){
@@ -114,7 +117,7 @@ public class DAOsTest  {
 		commitTransaction();
 
 		beginTransaction();
-		chansonRetrieved = chansonDAO.getByAlbumAndNum(chanson1.getAlbum(), chanson1.getNumero());
+		chansonRetrieved = chansonDAO.getByAlbumAndNum(album, chanson1.getNumero());
 		logger.info("---"+chanson1 +" vs. "+ chansonRetrieved);
 		assertEquals("Cannot retrieve chanson", chansonRetrieved, chanson1);
 		commitTransaction();

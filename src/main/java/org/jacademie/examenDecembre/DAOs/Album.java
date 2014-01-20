@@ -52,8 +52,7 @@ public class Album  implements Serializable{
 	
 	public void addChanson(Chanson chanson){
 		chansons.add(chanson);
-		if(!this.equals(chanson.getAlbum()))
-			chanson.setAlbum(this);
+		
 	}
 	
 

@@ -17,45 +17,24 @@ public class Chanson implements Serializable{
 	private Integer numero;
 	private String titre;
 	private Integer duree;
-	private Album album;
+	private Integer idChanson;
 
 	public Chanson() {
 		super();
 
 	}
 
-	public Chanson(Integer numero, String titre, Integer duree, Album album) {
-		super();
-		this.numero = numero;
-		this.titre = titre;
-		this.duree = duree;
-		this.album = album;
-	}
+	
 
 	public Chanson(Integer numero, String titre, Integer duree) {
 		super();
 		this.numero = numero;
 		this.titre = titre;
 		this.duree = duree;
-	}
-	
-	public Chanson(Integer numero, Album album) {
-		super();
-		this.numero = numero;
-		this.album = album;
+		
 	}
 
-	public Album getAlbum() {
-		return album;
-	}
 
-	public void setAlbum(Album album) {
-		logger.debug(album);
-		this.album = album;
-		if(!album.getChansons().contains(this))
-			album.addChanson(this);
-	}
-	
 	public Integer getNumero() {
 		return numero;
 	}
@@ -80,21 +59,38 @@ public class Chanson implements Serializable{
 		this.duree = duree;
 	}
 
+	public Integer getIdChanson() {
+		return idChanson;
+	}
+
+
+	public void setIdChanson(Integer idChanson) {
+		this.idChanson = idChanson;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Chanson [numero=" + numero + ", titre=" + titre + ", duree="
-				+ duree + "]";
+				+ duree + ", idChanson=" + idChanson + "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((duree == null) ? 0 : duree.hashCode());
+		result = prime * result
+				+ ((idChanson == null) ? 0 : idChanson.hashCode());
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -110,6 +106,11 @@ public class Chanson implements Serializable{
 				return false;
 		} else if (!duree.equals(other.duree))
 			return false;
+		if (idChanson == null) {
+			if (other.idChanson != null)
+				return false;
+		} else if (!idChanson.equals(other.idChanson))
+			return false;
 		if (numero == null) {
 			if (other.numero != null)
 				return false;
@@ -122,4 +123,7 @@ public class Chanson implements Serializable{
 			return false;
 		return true;
 	}
+
+	
+	
 }

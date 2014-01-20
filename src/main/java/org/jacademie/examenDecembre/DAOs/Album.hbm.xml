@@ -13,10 +13,12 @@
 			<column name="NOM" not-null="true" />
 		</property>
 		
-		<set name="chansons" lazy="false" cascade="all,delete-orphan" inverse="true">
-			<key column="ALBUM_ID" not-null="true" />
-			<one-to-many class="Chanson" />
+		
+		<set name="chansons" lazy="false"   cascade="all,delete-orphan" >
+			<key column="ALBUM_ID" not-null="true"/>
+			<one-to-many class="Chanson"/>
 		</set>
 
 	</class>
+
 </hibernate-mapping>	

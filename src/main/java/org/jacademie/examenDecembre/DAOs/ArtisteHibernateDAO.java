@@ -17,6 +17,7 @@ public class ArtisteHibernateDAO extends GeneriqueHibernateDAO<Artiste> implemen
 	public Artiste getOneByName(String searchPattern) {
 		return searchOneByPattern("nom", searchPattern);
 	}
+	
 
 
 }

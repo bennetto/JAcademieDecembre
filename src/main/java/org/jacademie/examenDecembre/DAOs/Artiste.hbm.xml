@@ -14,10 +14,11 @@
 			<column name="NOM" not-null="true" />
 		</property>
 		
-		<set name="albums" lazy="false" cascade="all,delete-orphan">
+		<set name="albums" lazy="false"  cascade="all,delete-orphan">
 			<key column="ARTISTE_ID" not-null="true" />
 			<one-to-many class="Album" />
 		</set>
 
 	</class>
+	
 </hibernate-mapping>	

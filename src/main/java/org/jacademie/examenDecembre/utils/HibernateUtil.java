@@ -52,7 +52,12 @@ public class HibernateUtil {
 		HibernateUtil.getSession().getTransaction().commit();
 		
 	}
-	 
+
+	public static void flush() {
+		HibernateUtil.getSession().flush();
+		
+	}
+	
 	public static void rollbackTransaction() {
 		HibernateUtil.getSession().getTransaction().rollback();
 	}

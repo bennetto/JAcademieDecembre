@@ -3,6 +3,7 @@ package org.jacademie.examenDecembre;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.closeSession;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
+import static org.jacademie.examenDecembre.utils.HibernateUtil.flush;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.openSession;
 import static org.jacademie.examenDecembre.utils.HibernateUtil.rollbackTransaction;
 
@@ -11,7 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueObjectException;
 import org.jacademie.examenDecembre.DAOs.Album;
@@ -23,7 +23,6 @@ import org.jacademie.examenDecembre.DAOs.ChansonHibernateDAO;
 import org.jacademie.examenDecembre.DAOs.IAlbumDAO;
 import org.jacademie.examenDecembre.DAOs.IArtisteDAO;
 import org.jacademie.examenDecembre.DAOs.IChansonDAO;
-import org.jacademie.examenDecembre.utils.HibernateUtil;
 
 import au.com.bytecode.opencsv.CSVReader;
 
@@ -41,7 +40,7 @@ public class ReadFileMusic {
 			csvReader = new CSVReader(new FileReader(pathFileMusic));
 
 			String[] rowAsTokens;
-			
+
 			openSession();
 			beginTransaction();
 			while ((rowAsTokens = csvReader.readNext()) != null) {
@@ -60,50 +59,53 @@ public class ReadFileMusic {
 				String titreChanson = rowAsTokens[5];
 				Integer dureeChanson = Integer.parseInt(rowAsTokens[6]);
 
-				
 				Artiste artist = artisteDAO.getById(codeArtist);
-
+				logger.debug(artist);
 				if (artist == null) {
-					Chanson chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
+					Chanson chanson = new Chanson(numeroChanson, titreChanson,
+							dureeChanson);
 					logger.debug("a + " + chanson);
 					Album album = new Album(codeAlbum, nomAlbum, null);
 					album.addChanson(chanson);
 					artist = new Artiste(codeArtist, nomArtiste, null);
 					artist.addAlbum(album);
 					artisteDAO.save(artist);
-					
+
 				} else {
 					Album album = albumDAO.getById(codeAlbum);
+					logger.info(album);
 					if (album == null) {
-						Chanson chanson = new Chanson(numeroChanson,titreChanson, dureeChanson);
+						Chanson chanson = new Chanson(numeroChanson,
+								titreChanson, dureeChanson);
 						logger.debug("b + " + chanson);
 						album = new Album(codeAlbum, nomAlbum, null);
 						album.addChanson(chanson);
 						artist.addAlbum(album);
-						
+
 					} else {
-						Chanson chanson = chansonDAO.getByAlbumAndNum(album,numeroChanson);
+						Chanson chanson = chansonDAO.getByAlbumAndNum(album,
+								numeroChanson);
+						logger.debug(chanson);
 						logger.debug("c + " + chanson);
 						if (chanson == null) {
-							chanson = new Chanson(numeroChanson, titreChanson,dureeChanson);
+							chanson = new Chanson(numeroChanson, titreChanson,
+									dureeChanson);
 							logger.debug("c2 + " + chanson);
 							album.addChanson(chanson);
-							//albumDAO.update(album);
-						
-							
+							// albumDAO.update(album);
+
 						} else {
 							chanson.setTitre(titreChanson);
 							chanson.setDuree(dureeChanson);
-							//chansonDAO.update(chanson);
-							
+							// chansonDAO.update(chanson);
+
 						}
 					}
 					artisteDAO.update(artist);
+					flush();
 				}
 			}
 
-			
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,12 +119,12 @@ public class ReadFileMusic {
 			rollbackTransaction();
 			closeSession();
 			return false;
-		}catch(NonUniqueObjectException e){
+		} catch (NonUniqueObjectException e) {
 			e.printStackTrace();
 			rollbackTransaction();
 			closeSession();
 			return false;
-		}catch(HibernateException e){
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			rollbackTransaction();
 			closeSession();
@@ -133,6 +135,7 @@ public class ReadFileMusic {
 		closeSession();
 		return true;
 	}
+
 	private static boolean extractData() {
 		return false;
 	}

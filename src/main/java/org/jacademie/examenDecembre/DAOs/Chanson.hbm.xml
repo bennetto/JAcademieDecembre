@@ -7,11 +7,14 @@
 
 	<class name="Chanson" table="Chanson">
 
-		<composite-id>
-			<key-property name="numero" column="NUMERO" type="integer" />
-			<key-many-to-one name="album" class="Album" column="ALBUM_ID"
-				lazy="false"></key-many-to-one>
-		</composite-id>
+		<id name="idChanson" type="integer">
+			<generator class="native" />
+		</id>
+		
+		<property name="numero"  type="integer" >
+			<column name="NUMERO" not-null="true" />
+		</property>
+			
 
 		<property name="titre" type="string">
 			<column name="TITRE" not-null="true" />
@@ -23,8 +26,9 @@
 
 	</class>
 	<query name="getChansonByID">
-		SELECT ch FROM Chanson as ch
-		LEFT JOIN ch.album as alb
-		WHERE alb.codeAlbum=:album_code AND ch.numero=:chanson_numero
+		SELECT ch FROM Album as alb
+		JOIN alb.chansons as ch
+		WHERE  alb.codeAlbum=:album_code 
+		AND ch.numero=:chanson_numero
 	</query>
 </hibernate-mapping>	

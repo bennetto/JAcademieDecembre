@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 import au.com.bytecode.opencsv.CSVReader;
 
 public class ReadCSV {
@@ -12,7 +14,10 @@ public class ReadCSV {
 	   * @param args
 	   * @throws IOException 
 	   */
+	private static final Logger logger = Logger.getLogger(ReadCSV.class);
 	  public static void main(String[] args) throws IOException {
+		  
+		  
 	    /**
 	     * Load CSV from classpath
 	     */
@@ -25,14 +30,12 @@ public class ReadCSV {
 			
 			String folderCSV = prop.getProperty("folderIn");
 			File repository = new File(folderCSV);
-		
+			logger.info(repository.getPath());
 						
 			String[] listCSV = repository.list();
 			for (int i = 0; i < listCSV.length; i++) {
 				if (listCSV[i].toLowerCase().endsWith(".music") == true ) {
-					
-						
-						 String fileCSV = folderCSV+"/"+listCSV[i];
+						String fileCSV = folderCSV+"/"+listCSV[i];
 						 
 						boolean success =  ReadFileMusic.readFile(fileCSV);
 			

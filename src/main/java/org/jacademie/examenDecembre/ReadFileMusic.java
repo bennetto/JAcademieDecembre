@@ -14,15 +14,15 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueObjectException;
-import org.jacademie.examenDecembre.DAOs.Album;
-import org.jacademie.examenDecembre.DAOs.AlbumHibernateDAO;
-import org.jacademie.examenDecembre.DAOs.Artiste;
-import org.jacademie.examenDecembre.DAOs.ArtisteHibernateDAO;
-import org.jacademie.examenDecembre.DAOs.Chanson;
-import org.jacademie.examenDecembre.DAOs.ChansonHibernateDAO;
-import org.jacademie.examenDecembre.DAOs.IAlbumDAO;
-import org.jacademie.examenDecembre.DAOs.IArtisteDAO;
-import org.jacademie.examenDecembre.DAOs.IChansonDAO;
+import org.jacademie.examenDecembre.bo.Album;
+import org.jacademie.examenDecembre.bo.Artiste;
+import org.jacademie.examenDecembre.bo.Chanson;
+import org.jacademie.examenDecembre.dao.IAlbumDAO;
+import org.jacademie.examenDecembre.dao.IArtisteDAO;
+import org.jacademie.examenDecembre.dao.IChansonDAO;
+import org.jacademie.examenDecembre.dao.impl.AlbumHibernateDAO;
+import org.jacademie.examenDecembre.dao.impl.ArtisteHibernateDAO;
+import org.jacademie.examenDecembre.dao.impl.ChansonHibernateDAO;
 
 import au.com.bytecode.opencsv.CSVReader;
 

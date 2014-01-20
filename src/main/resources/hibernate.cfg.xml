@@ -25,9 +25,9 @@
 						
 		<!-- Liste des fichiers de Mapping hbm -->
 		
-		<mapping resource="org/jacademie/examenDecembre/DAOs/Artiste.hbm.xml"/>
-		<mapping resource="org/jacademie/examenDecembre/DAOs/Album.hbm.xml"/>		
-		<mapping resource="org/jacademie/examenDecembre/DAOs/Chanson.hbm.xml"/>
+		<mapping resource="org/jacademie/examenDecembre/dao/impl/mapping/Artiste.hbm.xml"/>
+		<mapping resource="org/jacademie/examenDecembre/dao/impl/mapping/Album.hbm.xml"/>		
+		<mapping resource="org/jacademie/examenDecembre/dao/impl/mapping/Chanson.hbm.xml"/>
 		
 		
 	</session-factory>

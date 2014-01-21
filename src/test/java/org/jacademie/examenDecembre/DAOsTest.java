@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.jacademie.examenDecembre.bo.Album;
 import org.jacademie.examenDecembre.bo.Artiste;
 import org.jacademie.examenDecembre.bo.Chanson;
-import org.jacademie.examenDecembre.dao.IAlbumDAO;
-import org.jacademie.examenDecembre.dao.IArtisteDAO;
-import org.jacademie.examenDecembre.dao.IChansonDAO;
+import org.jacademie.examenDecembre.dao.AlbumDAO;
+import org.jacademie.examenDecembre.dao.ArtisteDAO;
+import org.jacademie.examenDecembre.dao.ChansonDAO;
 import org.jacademie.examenDecembre.dao.impl.AlbumHibernateDAO;
 import org.jacademie.examenDecembre.dao.impl.ArtisteHibernateDAO;
 import org.jacademie.examenDecembre.dao.impl.ChansonHibernateDAO;
@@ -33,9 +33,9 @@ public class DAOsTest  {
 	static private Chanson chanson2 = new Chanson(2, "Second Chanson", 102);
 	static private Chanson chanson3 = new Chanson(3, "Third Chanson", 103);
 	
-	static IArtisteDAO artisteDAO = new ArtisteHibernateDAO();
-	static IAlbumDAO albumDAO = new AlbumHibernateDAO();
-	static IChansonDAO chansonDAO = new ChansonHibernateDAO();
+	static ArtisteDAO artisteDAO = new ArtisteHibernateDAO();
+	static AlbumDAO albumDAO = new AlbumHibernateDAO();
+	static ChansonDAO chansonDAO = new ChansonHibernateDAO();
 	
 	@BeforeClass
 	public static void initDB(){

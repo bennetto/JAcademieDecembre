@@ -10,7 +10,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.jacademie.examenDecembre.services.MusicData;
 import org.jacademie.examenDecembre.services.MusicDataException;
-import org.jacademie.examenDecembre.services.MusicDataExtractor;
+import org.jacademie.examenDecembre.services.MusicDataExtractorService;
 import org.jacademie.examenDecembre.services.MusicDataUpdaterService;
 import org.jacademie.examenDecembre.services.impl.CSVMusicDataExtractor;
 import org.jacademie.examenDecembre.services.impl.MusicDataUpdaterServiceImpl;
@@ -43,7 +43,7 @@ public class Main
 
 			String[] fileNames = repository.list();
 			
-			MusicDataExtractor dataExtractor = new CSVMusicDataExtractor();
+			MusicDataExtractorService dataExtractor = new CSVMusicDataExtractor();
 			MusicDataUpdaterService dataUpdater = new MusicDataUpdaterServiceImpl();
 			
 			for ( int i=0; i<fileNames.length; i++ ) {

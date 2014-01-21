@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.jacademie.examenDecembre.services.MusicData;
 import org.jacademie.examenDecembre.services.MusicDataException;
-import org.jacademie.examenDecembre.services.MusicDataExtractor;
+import org.jacademie.examenDecembre.services.MusicDataExtractorService;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-public class CSVMusicDataExtractor implements MusicDataExtractor {
+public class CSVMusicDataExtractor implements MusicDataExtractorService {
 
 	CSVReader csvReader;
 	public CSVMusicDataExtractor() {

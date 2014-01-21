@@ -2,8 +2,6 @@ package org.jacademie.examenDecembre.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.jacademie.examenDecembre.bo.Album;
 import org.jacademie.examenDecembre.dao.AlbumDAO;
 

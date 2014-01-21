@@ -1,6 +1,5 @@
 package org.jacademie.examenDecembre.services;
 
-import java.io.Serializable;
 
 public class MusicData {
 

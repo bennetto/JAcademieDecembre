@@ -27,6 +27,10 @@ public class CSVMusicDataExtractor implements MusicDataExtractorService {
 		
 		try {
 			while ((rowAsTokens = csvReader.readNext()) != null) {
+				if(rowAsTokens.length != 7){
+					MusicDataException dataException = new MusicDataException("Error while reading CSV File: Misformated row");
+					throw dataException;
+				}
 				MusicData data = new MusicData();
 				data.setCodeArtist(Integer.parseInt(rowAsTokens[0]) );
 				data.setNomArtiste(rowAsTokens[1] );

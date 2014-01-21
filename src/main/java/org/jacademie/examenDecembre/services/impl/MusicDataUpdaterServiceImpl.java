@@ -1,12 +1,5 @@
 package org.jacademie.examenDecembre.services.impl;
 
-import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.closeSession;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.flush;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.openSession;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.rollbackTransaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +16,8 @@ import org.jacademie.examenDecembre.dao.impl.ChansonHibernateDAO;
 import org.jacademie.examenDecembre.services.MusicData;
 import org.jacademie.examenDecembre.services.MusicDataException;
 import org.jacademie.examenDecembre.services.MusicDataUpdaterService;
+import org.jacademie.examenDecembre.utils.HibernateManager;
+import org.jacademie.examenDecembre.utils.PersistenceManager;
 
 public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 	private static final Logger logger = Logger.getLogger(MusicDataUpdaterServiceImpl.class);
@@ -31,6 +26,7 @@ public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 	private ArtisteDAO artisteDAO = new ArtisteHibernateDAO();
 	private AlbumDAO albumDAO = new AlbumHibernateDAO();
 	private ChansonDAO chansonDAO = new ChansonHibernateDAO();
+	private PersistenceManager persistenceManager = new HibernateManager();
 
 	public MusicDataUpdaterServiceImpl(){
 		this(new ArrayList<MusicData>());
@@ -48,13 +44,13 @@ public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 
 	public void update() throws MusicDataException{
 
-		openSession();
-		beginTransaction();
+		persistenceManager.openSession();
+		persistenceManager.beginTransaction();
 
 		for( MusicData data : datas ){
 			if(!isDataComplete(data)){
-				rollbackTransaction();
-				closeSession();
+				persistenceManager.rollbackTransaction();
+				persistenceManager.closeSession();
 
 				throw new MusicDataException();
 			}
@@ -92,11 +88,11 @@ public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 			}
 
 			artisteDAO.save(artist);
-			flush();
+			persistenceManager.flush();
 		}
 
-		commitTransaction();
-		closeSession();
+		persistenceManager.commitTransaction();
+		persistenceManager.closeSession();
 	}
 
 

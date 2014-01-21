@@ -9,13 +9,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.jacademie.examenDecembre.dao.GeneriqueDAO;
-import org.jacademie.examenDecembre.utils.HibernateUtil;
+import org.jacademie.examenDecembre.utils.HibernateManager;
 
 abstract public class GeneriqueHibernateDAO<T extends Object> implements GeneriqueDAO<T>{
 
 	protected Class<T> clazz;
 	protected Logger logger = Logger.getLogger(GeneriqueHibernateDAO.class);
-	
+	protected HibernateManager manager = new HibernateManager();
 	public GeneriqueHibernateDAO(Class<T> clazz) {
 		this.clazz = clazz; 
 	}
@@ -25,7 +25,7 @@ abstract public class GeneriqueHibernateDAO<T extends Object> implements Generiq
 	abstract public T getOneByName(String searchPattern);
 	
 	protected Session getSession(){
-		return HibernateUtil.getSession();
+		return manager.getSession();
 	}
 
 	protected List<T> searchByPattern(String table, String searchPattern){

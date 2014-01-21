@@ -1,33 +1,9 @@
 package org.jacademie.examenDecembre;
 
-import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.closeSession;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.flush;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.openSession;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.rollbackTransaction;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.NonUniqueObjectException;
-import org.jacademie.examenDecembre.bo.Album;
-import org.jacademie.examenDecembre.bo.Artiste;
-import org.jacademie.examenDecembre.bo.Chanson;
-import org.jacademie.examenDecembre.dao.AlbumDAO;
-import org.jacademie.examenDecembre.dao.ArtisteDAO;
-import org.jacademie.examenDecembre.dao.ChansonDAO;
-import org.jacademie.examenDecembre.dao.impl.AlbumHibernateDAO;
-import org.jacademie.examenDecembre.dao.impl.ArtisteHibernateDAO;
-import org.jacademie.examenDecembre.dao.impl.ChansonHibernateDAO;
-
-import au.com.bytecode.opencsv.CSVReader;
 
 public class ReadFileMusic {
-
+/*
 	private static Logger logger = Logger.getLogger(ReadFileMusic.class);
 	static ArtisteDAO artisteDAO = new ArtisteHibernateDAO();
 	static AlbumDAO albumDAO = new AlbumHibernateDAO();
@@ -132,5 +108,5 @@ public class ReadFileMusic {
 	private static boolean extractData() {
 		return false;
 	}
-
+*/
 }

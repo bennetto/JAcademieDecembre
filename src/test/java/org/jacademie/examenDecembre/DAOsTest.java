@@ -1,7 +1,5 @@
 package org.jacademie.examenDecembre;
 
-import static org.jacademie.examenDecembre.utils.HibernateUtil.beginTransaction;
-import static org.jacademie.examenDecembre.utils.HibernateUtil.commitTransaction;
 import static org.junit.Assert.*;
 
 import org.apache.log4j.Logger;
@@ -14,7 +12,8 @@ import org.jacademie.examenDecembre.dao.ChansonDAO;
 import org.jacademie.examenDecembre.dao.impl.AlbumHibernateDAO;
 import org.jacademie.examenDecembre.dao.impl.ArtisteHibernateDAO;
 import org.jacademie.examenDecembre.dao.impl.ChansonHibernateDAO;
-import org.jacademie.examenDecembre.utils.HibernateUtil;
+import org.jacademie.examenDecembre.utils.HibernateManager;
+import org.jacademie.examenDecembre.utils.PersistenceManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,22 +35,22 @@ public class DAOsTest  {
 	static ArtisteDAO artisteDAO = new ArtisteHibernateDAO();
 	static AlbumDAO albumDAO = new AlbumHibernateDAO();
 	static ChansonDAO chansonDAO = new ChansonHibernateDAO();
-	
+	static PersistenceManager persistenceManager = new HibernateManager();
 	@BeforeClass
 	public static void initDB(){
-		HibernateUtil.openSession();
-		beginTransaction();
+		persistenceManager.openSession();
+		persistenceManager.beginTransaction();
 		artisteDAO.save(art0);
-		commitTransaction();
+		persistenceManager.commitTransaction();
 	}
 	
 	@Test
 	public void findArtistByID(){
 		Artiste artiste = art0;
 		Artiste artisteRetrieved; 
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		artisteRetrieved = artisteDAO.getById(artiste.getCodeArtiste());
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		assertEquals(artiste, artisteRetrieved);
 
 	}
@@ -59,9 +58,9 @@ public class DAOsTest  {
 	public void findArtistByName(){
 		Artiste artiste = art0;
 		Artiste artisteRetrieved; 
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		artisteRetrieved = artisteDAO.getOneByName(artiste.getNom());
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		logger.info(artiste);
 		logger.info(artisteRetrieved);
 		assertEquals(artiste, artisteRetrieved);
@@ -75,28 +74,28 @@ public class DAOsTest  {
 		Album albumRetrived;
 		Album albumRetrivedUpdated;
 		
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		artisteDAO.save(artiste);
 		artiste.addAlbum(album);
-		commitTransaction();
+		persistenceManager.commitTransaction();
 
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		albumRetrived = albumDAO.getById(album.getCodeAlbum());
 		artisteRetrieved = artisteDAO.getById(artiste.getCodeArtiste());
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		assertEquals("Cannot retrieve album", album, albumRetrived);
 		assertTrue("Artist doesn't contain album added", artisteRetrieved.getAlbums().contains(albumRetrived));
 		
 		
 		albumRetrived.setNom("First album!!");
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		albumDAO.update(albumRetrived);
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		artisteRetrieved = artisteDAO.getById(artiste.getCodeArtiste());
 		albumRetrivedUpdated = albumDAO.getById(album.getCodeAlbum());
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		assertEquals("Update failed", albumRetrived, albumRetrivedUpdated);
 		assertTrue("Artist doesn't contain album updated", artisteRetrieved.getAlbums().contains(albumRetrivedUpdated));
 	}
@@ -107,20 +106,20 @@ public class DAOsTest  {
 		Album album = alb2_0;
 		Chanson chansonRetrieved;
 		
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		artisteDAO.save(artiste);
 		artiste.addAlbum(album);
 		artisteDAO.update(artiste);
 		album.addChanson(chanson1);
 		album.addChanson(chanson2);
 		album.addChanson(chanson3);
-		commitTransaction();
+		persistenceManager.commitTransaction();
 
-		beginTransaction();
+		persistenceManager.beginTransaction();
 		chansonRetrieved = chansonDAO.getByAlbumAndNum(album, chanson1.getNumero());
 		logger.info("---"+chanson1 +" vs. "+ chansonRetrieved);
 		assertEquals("Cannot retrieve chanson", chansonRetrieved, chanson1);
-		commitTransaction();
+		persistenceManager.commitTransaction();
 		
 	}
 	
@@ -128,7 +127,7 @@ public class DAOsTest  {
 	
 	@AfterClass
 	public static void closeDB(){
-		HibernateUtil.closeSession();
+		persistenceManager.closeSession();
 	}
 
 }

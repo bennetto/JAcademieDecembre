@@ -48,6 +48,7 @@ public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 		persistenceManager.beginTransaction();
 
 		for( MusicData data : datas ){
+			logger.debug("update : " + datas);
 			if(!isDataComplete(data)){
 				persistenceManager.rollbackTransaction();
 				persistenceManager.closeSession();
@@ -106,8 +107,13 @@ public class MusicDataUpdaterServiceImpl implements MusicDataUpdaterService{
 			return false;
 		if(data.getNomAlbum() == null || data.getNomAlbum() == "")
 			return false;
+		if(data.getNumeroChanson() == null)
+			return false;
+		if(data.getTitreChanson() == null || data.getTitreChanson() == "")
+			return false;
+		if(data.getDureeChanson() == null || data.getDureeChanson() == -1)
+			return false;
 		
-		//TODO : Complete
 		return true;
 	}
 

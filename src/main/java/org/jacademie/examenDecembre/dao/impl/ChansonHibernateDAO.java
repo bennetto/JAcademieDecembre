@@ -13,7 +13,6 @@ public class ChansonHibernateDAO extends GeneriqueHibernateDAO<Chanson> implemen
 
 	public ChansonHibernateDAO() {
 		super(Chanson.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

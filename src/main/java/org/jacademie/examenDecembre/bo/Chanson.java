@@ -2,13 +2,8 @@ package org.jacademie.examenDecembre.bo;
 
 import java.io.Serializable;
 
-import org.apache.log4j.Logger;
-
 public class Chanson implements Serializable{
 
-	
-	private static final Logger logger = Logger.getLogger(Chanson.class);
-	
 	/**
 	 * 
 	 */

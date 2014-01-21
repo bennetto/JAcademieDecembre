@@ -44,6 +44,7 @@ public class Main
 			String[] fileNames = repository.list();
 			
 			MusicDataExtractorService dataExtractor = new CSVMusicDataExtractor();
+			
 			MusicDataUpdaterService dataUpdater = new MusicDataUpdaterServiceImpl();
 			FileMoverService fileMover = new FileMoverServiceImpl();
 			
@@ -55,16 +56,18 @@ public class Main
 					try {
 						try {
 							List<MusicData> datas = dataExtractor.getDatas(reader);
+							reader.close();
 							dataUpdater.update(datas);
 							logger.info("Fichier " + fileNames[i] + " mis a jour avec succès");
 							
 							fileMover.moveFileToFolder(file, sucessPath);
 						} catch (MusicDataException e) {
 							logger.error("Erreur lors de la mise a jour a partir du fichier " + fileNames[i], e);
-	
+							reader.close();
 							fileMover.moveFileToFolder(file, failPath);
 						}
 					} catch(IOException e){
+						reader.close();
 						logger.error("Erreur lors du déplacement d'un fichier", e);
 					}
 				}

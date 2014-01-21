@@ -10,7 +10,7 @@
 		<!--jdbc:hsqldb:hsql://localhost/bankonetdb-->
     	 
 				
-		<property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/mydb</property> 
+		<property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/musicdb</property> 
 		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
         <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
         	
@@ -20,7 +20,7 @@
  			
 		<!-- Configuration hibernate -->
        	<property name="show_sql">true</property>
-       	<property name="hibernate.hbm2ddl.auto">create</property>
+       	<property name="hibernate.hbm2ddl.auto">validate</property>
        	
 						
 		<!-- Liste des fichiers de Mapping hbm -->

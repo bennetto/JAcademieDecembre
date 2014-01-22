@@ -86,36 +86,36 @@ Fichiers de mapping Objets métiers - DB (Hibernate)
 
 ### org.jacademie.examenDecembre.services
 Contient les interfaces des differents services:
-*FileMoverService : * Permet le déplacement d'un fichier.
-*MusicDataExtractorService : * Permet l'extraction d'informations (MusicData) sur les musiques a partir d'un lecteur (Reader).
-*MusicDataUpdaterService : * Permet la mise a jour des objets métiers à partir d'informations (MusicData) extraites ou fournies.
-*MusicData : * Permet le stockage temporaire d'informations sur les musiques.
-*MusicDataException : * Soulevée par MusicDataExtractorService et MusicDataUpdaterService lorsque les informations lues ou enregistrées sont éronnées.
+**FileMoverService : ** Permet le déplacement d'un fichier.
+**MusicDataExtractorService : ** Permet l'extraction d'informations (MusicData) sur les musiques a partir d'un lecteur (Reader).
+**MusicDataUpdaterService : ** Permet la mise a jour des objets métiers à partir d'informations (MusicData) extraites ou fournies.
+**MusicData : ** Permet le stockage temporaire d'informations sur les musiques.
+**MusicDataException : ** Soulevée par MusicDataExtractorService et MusicDataUpdaterService lorsque les informations lues ou enregistrées sont éronnées.
 
 ### org.jacademie.examenDecembre.services.impl
 Implementation des services:
 
 ### org.jacademie.examenDecembre.utils
 Rassemble diférents outils utilisée par les services.
-*PersistenceManager : * Interface les outils traditionnels de gestion de base SQL.
-*HibernateManage : * Implémentation de l'interface PersitenceManager pour hibernate.
+**PersistenceManager : ** Interface les outils traditionnels de gestion de base SQL.
+**HibernateManage : ** Implémentation de l'interface PersitenceManager pour hibernate.
 
 ### org.jacademie.examenDecembre.tests
 Classes de test des Services et DAO de l'application.
-*DAOsTest : * Test la bonne sauvegarde et récupération de tous les objets.
-*MusicDataUpdaterService : * Test unitaire (rudimentaire) de la classe MusicDataUpdater
+**DAOsTest : ** Test la bonne sauvegarde et récupération de tous les objets.
+**MusicDataUpdaterService : ** Test unitaire (rudimentaire) de la classe MusicDataUpdater
 
 
 ### Ressources:
-*confCSV.properties : *
-*hibernate.cfg.xml : * Configuration de la base de données et du mapping Hibernate
-*log4j.properties : * Configuration de la journalisation.
+**confCSV.properties : **
+**hibernate.cfg.xml : ** Configuration de la base de données et du mapping Hibernate
+**log4j.properties : ** Configuration de la journalisation.
 
 
 Librairies utilisées
 --------------------
-*log4j : * Pour la journalisation.
-*org.hsqldb : * Gestion de base de données.
-*org.hibernate : * Gestion de la persistence (Connection a la base de donnée).
-*net.sf.opencsv : * Lecteur et parseur de fichiers CSV.
-*junit (4.11) : * Tests unitaires.
+**log4j : ** Pour la journalisation.
+**org.hsqldb : ** Gestion de base de données.
+**org.hibernate : ** Gestion de la persistence (Connection a la base de donnée).
+**net.sf.opencsv : ** Lecteur et parseur de fichiers CSV.
+**junit (4.11) : ** Tests unitaires.

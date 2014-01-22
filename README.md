@@ -6,6 +6,44 @@ Auteurs
 Benjamin BONNETTO
 Jean-Michel POTHELUNE
 
+Sujet
+------
+
+L’objectif est de réaliser un programme Java alimentant une base de données à partir de fichiers texte structurés. ( format CSV)
+
+####Le domaine métier est le suivant :
+*	Des Artistes 
+    *	sont identifiés de manière unique par un CodeArtiste de type entier.
+    *	Possèdent un nom
+    *	Produisent des albums
+*	Les Albums
+    *	sont identifiés de manière unique par un CodeAlbum de type entier.
+    *	Possèdent un nom
+    *	Contiennent des chansons
+*	Les Chansons
+    *	Possèdent un numéro unique dans un album
+    *	ont un titre
+    *	ont une durée qui est un entier (nombre de secondes)
+    
+L’application doit scruter un répertoire.
+Dans ce répertoire, elle doit chercher les fichiers avec l’extension « .music ».
+
+Ces fichiers sont des fichiers textes au format suivant :
+CodeArtiste, NomArtiste, CodeAlbum, NomAlbum, NumeroChanson, TitreChanson, DureeChanson
+Ces fichiers peuvent contenir plusieurs lignes, les différentes chansons d’un album, plusieurs albums d’un même artiste, plusieurs albums d’artistes différents, etc…
+
+#### L’application va :
+*	trouver ces fichiers
+*	déterminer les fichiers valides et invalides (mauvais format)
+*	pour chaque fichier valide :
+    *	parser ce fichier
+    *	créer ou mettre à jour les artistes rencontrés
+    *	créer ou mettre à jour les albums rencontrés
+    *	créer ou mettre à jour les chansons rencontrés
+    *	déplacer les fichiers traités vers un répertoire « processed_YYYYMMDD_HHmmSS »
+
+
+
 Installation (Eclipse)
 ----------------------
 ### Clonage du repository git à partir de GitHub

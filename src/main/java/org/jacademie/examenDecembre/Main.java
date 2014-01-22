@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -38,15 +40,18 @@ public class Main
 			String folderPath = prop.getProperty("inputPath");
 			String sucessPath = prop.getProperty("successOutputPath");
 			String failPath = prop.getProperty("failOutputPath");
+			String dateFormat = prop.getProperty("timeExtension");
+			String dateExt = new SimpleDateFormat(dateFormat).format(new Date());
+			
 			File repository = new File(folderPath);
 			logger.info(repository.getPath());
 
 			String[] fileNames = repository.list();
 			
 			MusicDataExtractorService dataExtractor = new CSVMusicDataExtractor();
-			
 			MusicDataUpdaterService dataUpdater = new MusicDataUpdaterServiceImpl();
 			FileMoverService fileMover = new FileMoverServiceImpl();
+			
 			
 			for ( int i=0; i<fileNames.length; i++ ) {
 				if ( fileNames[i].toLowerCase().endsWith(".music") == true ) {
@@ -60,11 +65,11 @@ public class Main
 							dataUpdater.update(datas);
 							logger.info("Fichier " + fileNames[i] + " mis a jour avec succès");
 							
-							fileMover.moveFileToFolder(file, sucessPath);
+							fileMover.moveFileToFolder(file, sucessPath+dateExt);
 						} catch (MusicDataException e) {
 							logger.error("Erreur lors de la mise a jour a partir du fichier " + fileNames[i], e);
 							reader.close();
-							fileMover.moveFileToFolder(file, failPath);
+							fileMover.moveFileToFolder(file, failPath+dateExt);
 						}
 					} catch(IOException e){
 						reader.close();
